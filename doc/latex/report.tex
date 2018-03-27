@@ -38,12 +38,10 @@ A tarefa consiste em implementar um algoritmo de simulação de autômato determ
 
 Dado um autômato, estado inicial e cadeia, o algoritmo deve retornar se é possível que o autômato aceite a cadeia (ou seja, há uma sequência de transições iniciando no estado inicial e acabando em estado de aceitação que gere a cadeia desejada).
 
-Como vimos em aula, o estudo de autômatos é bastante importante. Linguagens reconhecidas por autômatos são regulares, e toda linguagem regular pode ser representada por um autômato. Autômatos determinísticos (DFA) e não determinísticos (NFA) são equivalentes (é possível converter qualquer NFA em DFA equivalente, que aceita e rejeita as mesmas cadeias).
+Como vimos em aula, o estudo de autômatos é bastante importante. Linguagens reconhecidas por autômatos são regulares, e toda linguagem regular pode ser representada por um autômato. Autômatos determinísticos (DFA) e não determinísticos (NFA) são equivalentes (é possível converter qualquer NFA em DFA equivalente, que aceita e rejeita as mesmas cadeias; no entanto, para um NFA de $n$ estados, o DFA equivalente pode ter até $2^n$ estados).
 
-Na hierarquia de Chomsky,
+Na hierarquia de Chomsky, autômatos finitos estão na classe de linguagens regulares:
 
-\\
-\\
 \begin{minipage}{\linewidth}
     \centering
     \label{chomsky}
@@ -51,13 +49,13 @@ Na hierarquia de Chomsky,
     \captionof{figure}{Hierarquia de Chomsky}
 \end{minipage}
 
-Na minha implementação, o autômato é dado como uma lista de transições (lista de tuplas do tipo ${estado, caractere, próximo\_estado}$). Os estados de aceitação são dados como uma lista de estados. A cadeia desejada é dada como uma lista.
+Na minha implementação, o autômato é dado como uma lista de transições (lista de tuplas do tipo $\{estado, caractere, pr\acute{o}ximo\_estado\}$). Os estados de aceitação são dados como uma lista de estados e a cadeia desejada é dada como uma lista.
 
 \section{Algoritmo}
 
-O algoritmo deve suportar ... (ou seja, pela hierarquia de Chomsky, ...):
+O algoritmo deve suportar autômatos não determinísticos, incluíndo transições vazias. O uso de transições vazias adiciona uma dificuldade à tarefa: ao seguir uma sequência de transições, o algoritmo deve acompanhar estados visitados para não ficar preso em um ciclo de transições em vazio.
 
-Conforme especifiado, a implementação é recursiva e feita em Elixir, uma linguagem funcional. Conforme sugerido no enunciado, ...
+A função $next_state$
 
 \section{Estruturas de dados}
 
