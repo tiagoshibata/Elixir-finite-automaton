@@ -28,17 +28,20 @@ tiago.shibata@usp.br}
 \maketitle
 
 \section{Introdução}
-Esse relatório acompanha o terceiro exercício programa (EP3) da disciplina PCS3556 - Lógica Computacional.
+Esse relatório acompanha o terceiro exercício programa (EP3) da disciplina PCS3556 - Lógica Computacional. Nesse exercício programa, é implementado um simulador de autômato finito determinístico e não determinístico em Elixir.
 
 \hfill 26 de Março de 2018
 
 \section{Tarefa}
 
-A tarefa consiste em implementar um algoritmo de ... O algoritmo deve retornar se ...
+A tarefa consiste em implementar um algoritmo de simulação de autômato determinístico e não determinístico em Elixir, experimentando com conceitos vistos em aula.
 
-\section{Algoritmo}
+Dado um autômato, estado inicial e cadeia, o algoritmo deve retornar se é possível que o autômato aceite a cadeia (ou seja, há uma sequência de transições iniciando no estado inicial e acabando em estado de aceitação que gere a cadeia desejada).
 
-O algoritmo deve suportar ... (ou seja, pela hierarquia de Chomsky, ...):
+Como vimos em aula, o estudo de autômatos é bastante importante. Linguagens reconhecidas por autômatos são regulares, e toda linguagem regular pode ser representada por um autômato. Autômatos determinísticos (DFA) e não determinísticos (NFA) são equivalentes (é possível converter qualquer NFA em DFA equivalente, que aceita e rejeita as mesmas cadeias).
+
+Na hierarquia de Chomsky,
+
 \\
 \\
 \begin{minipage}{\linewidth}
@@ -47,6 +50,12 @@ O algoritmo deve suportar ... (ou seja, pela hierarquia de Chomsky, ...):
     \includegraphics[width=0.8\textwidth]{Chomsky-hierarchy.pdf}
     \captionof{figure}{Hierarquia de Chomsky}
 \end{minipage}
+
+Na minha implementação, o autômato é dado como uma lista de transições (lista de tuplas do tipo ${estado, caractere, próximo\_estado}$). Os estados de aceitação são dados como uma lista de estados. A cadeia desejada é dada como uma lista.
+
+\section{Algoritmo}
+
+O algoritmo deve suportar ... (ou seja, pela hierarquia de Chomsky, ...):
 
 Conforme especifiado, a implementação é recursiva e feita em Elixir, uma linguagem funcional. Conforme sugerido no enunciado, ...
 
