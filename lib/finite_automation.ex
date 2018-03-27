@@ -1,18 +1,13 @@
 defmodule FiniteAutomation do
-  @moduledoc """
-  Documentation for FiniteAutomation.
-  """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> FiniteAutomation.hello
-      :world
-
-  """
-  def hello do
-    :world
+  def next_state(state, input, rules, already_visited \\ MapSet.new) do
+    if MapSet.member?(already_visited, state) do
+      []
+    else
+      already_visited = MapSet.put(already_visited, state)
+      rules_from_state = Enum.filter(rules, &(elem(&1, 0) == state))
+      Enum.flat_map(Enum.filter(rules_from_state, &(elem(&1, 1) == "")), &next_state(elem(&1, 2), input, rules, already_visited))
+      ++ (Enum.filter(rules_from_state, &elem(&1, 1) == input)
+      |> Enum.map(&elem(&1, 2)))
+    end
   end
 end
