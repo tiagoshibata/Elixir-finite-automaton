@@ -5,9 +5,19 @@ defmodule FiniteAutomation do
     else
       already_visited = MapSet.put(already_visited, state)
       rules_from_state = Enum.filter(rules, &(elem(&1, 0) == state))
-      Enum.flat_map(Enum.filter(rules_from_state, &is_nil(elem(&1, 1))), &next_state(elem(&1, 2), input, rules, already_visited))
-      ++ (Enum.filter(rules_from_state, &elem(&1, 1) == input)
+      (Enum.filter(rules_from_state, &elem(&1, 1) == input)
       |> Enum.map(&elem(&1, 2)))
-    end
+      ++ (Enum.filter(rules_from_state, &is_nil(elem(&1, 1)))
+      |> Enum.flat_map(&next_state(elem(&1, 2), input, rules, already_visited)))
+    end |> MapSet.new
+  end
+
+  def final_state(state, [], _) do
+    [state]
+  end
+
+  def final_state(state, input, rules) do
+    [head | tail] = input
+    Enum.flat_map(next_state(state, head, rules), &final_state(&1, tail, rules))
   end
 end
