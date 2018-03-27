@@ -1,9 +1,9 @@
-defmodule FiniteAutomation.MixProject do
+defmodule FiniteAutomaton.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :finite_automation,
+      app: :finite_automaton,
       version: "0.1.0",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,

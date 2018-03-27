@@ -1,4 +1,4 @@
-defmodule FiniteAutomation do
+defmodule FiniteAutomaton do
   def next_state(state, input, rules, already_visited \\ MapSet.new) do
     if MapSet.member?(already_visited, state) do
       []

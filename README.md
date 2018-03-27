@@ -1,5 +1,5 @@
-# Finite automation simulation
+# Finite automaton simulation
 
-Deterministic and nondeterministic finite automation simulation written in Elixir.
+Deterministic and nondeterministic finite automaton simulation written in Elixir.
 
 [Report](docs/latex/report.pdf)
