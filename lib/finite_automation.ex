@@ -13,7 +13,7 @@ defmodule FiniteAutomation do
   end
 
   def final_states(state, [], _) do
-    [state]
+    MapSet.new [state]
   end
 
   def final_states(state, input, rules) do
