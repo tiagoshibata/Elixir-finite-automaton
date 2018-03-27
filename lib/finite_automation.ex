@@ -12,12 +12,17 @@ defmodule FiniteAutomation do
     end |> MapSet.new
   end
 
-  def final_state(state, [], _) do
+  def final_states(state, [], _) do
     [state]
   end
 
-  def final_state(state, input, rules) do
+  def final_states(state, input, rules) do
     [head | tail] = input
-    Enum.flat_map(next_state(state, head, rules), &final_state(&1, tail, rules))
+    MapSet.new Enum.flat_map(next_state(state, head, rules), &final_states(&1, tail, rules))
+  end
+
+  def accepts_sentence?(state, input, rules, accept_states) do
+    MapSet.intersection(final_states(state, input, rules), MapSet.new accept_states)
+    |> MapSet.size > 0
   end
 end

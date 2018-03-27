@@ -26,10 +26,18 @@ defmodule FiniteAutomationTest do
 
   test "computes final state" do
     assert_have_same_elements(
-      FiniteAutomation.final_state(:q0, [:b], @nondeterministic_with_empty_loop),
+      FiniteAutomation.final_states(:q0, [:b], @nondeterministic_with_empty_loop),
       [:q1])
     assert_have_same_elements(
-      FiniteAutomation.final_state(:q0, [:a, :b], @nondeterministic_with_empty_loop),
+      FiniteAutomation.final_states(:q0, [:a, :b], @nondeterministic_with_empty_loop),
       [:q1, :q5])
+  end
+
+  test "tests sentence acceptance" do
+    assert not FiniteAutomation.accepts_sentence?(:q0, [:b], @nondeterministic_with_empty_loop, [:q0])
+    assert FiniteAutomation.accepts_sentence?(:q0, [:b], @nondeterministic_with_empty_loop, [:q1])
+    assert FiniteAutomation.accepts_sentence?(:q0, [:a, :b], @nondeterministic_with_empty_loop, [:q1])
+    assert FiniteAutomation.accepts_sentence?(:q0, [:a, :b], @nondeterministic_with_empty_loop, [:q5])
+    assert not FiniteAutomation.accepts_sentence?(:q0, [:a, :b], @nondeterministic_with_empty_loop, [:q0, :q2, :q3, :q4])
   end
 end
