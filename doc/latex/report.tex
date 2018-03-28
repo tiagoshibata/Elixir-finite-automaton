@@ -56,11 +56,11 @@ Na hierarquia de Chomsky, autômatos finitos estão na classe de linguagens regu
 \end{minipage}
 \\
 
-Nessa implementação, $\delta$ é dado como uma lista de transições (lista de tuplas do tipo $\{estado, caractere, pr\acute{o}ximo\_estado\}$, significando que $\delta(estado, caractere) = pr\acute{o}ximo\_estado$). Os estados de aceitação são dados como uma lista de estados e a cadeia desejada é dada como uma lista de elementos.
-
 \section{Estruturas de dados}
 
 Em alguns locais, estruturas de conjunto fornecidas pelo Elixir (\emph{MapSet} foram usadas. O uso de conjunto evita que varramos a lista toda para buscar um elemento, e o conjunto permite operações fáceis e rápidas de união ou diferença quando necessário. Funções do módulo \emph{Enum} foram usadas para facilitar a programação funcional.
+
+Nessa implementação, $\delta$ é dado como uma lista de transições (lista de tuplas do tipo $\{estado, caractere, pr\acute{o}ximo\_estado\}$, significando que $\delta(estado, caractere) = pr\acute{o}ximo\_estado$). Os estados de aceitação são dados como uma lista de estados e a cadeia desejada é dada como uma lista de elementos.
 
 \section{Algoritmo}
 
@@ -90,6 +90,10 @@ Finalmente, foram feitos testes de \emph{accepts\_sentence?}:
 
 \lstinputlisting{3_test.ex}
 
+Mais testes foram feitos com autômatos vistos em aula, e com sucesso:
+
+\lstinputlisting{3_test_2.ex}
+
 \section{Resultados}
 
 A implementação foi um sucesso e passou nos testes realizados. Casos com transições vazias, incluindo ciclos, foram testados e aprovados, e o código funcionou em qualquer DFA ou NFA testado.
@@ -101,6 +105,8 @@ Pude aplicar os conhecimentos da disciplina em um problema prático e realizar r
 \begin{thebibliography}{1}
 \bibitem{elixir}
 Friedel Ziegelmayer. \emph{Elixir ExDoc}. \url{https://hexdocs.pm/elixir/}, acessado em 11/02/2018
+\bibitem{universal-automata}
+Wagenknecht, C., Friedman, P.D. \emph{Teaching Nondeterministic and Universal Automata Using SCHEME}. Computer Science Education, vol. 8, Issue 3, 1998, p.197-227
 \end{thebibliography}
 
 \end{document}
