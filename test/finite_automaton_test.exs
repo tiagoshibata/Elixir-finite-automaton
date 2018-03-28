@@ -43,5 +43,17 @@ defmodule FiniteAutomatonTest do
     assert FiniteAutomaton.accepts_sentence?(:q0, [:a, :b], @nondeterministic_with_empty_loop, [:q1])
     assert FiniteAutomaton.accepts_sentence?(:q0, [:a, :b], @nondeterministic_with_empty_loop, [:q5])
     assert not FiniteAutomaton.accepts_sentence?(:q0, [:a, :b], @nondeterministic_with_empty_loop, [:q0, :q2, :q3, :q4])
+
+    simple_grammar = [
+      {:q0, :a, :q1},
+      {:q0, :b, :q2},
+      {:q1, :a, :q0},
+    ]
+    assert FiniteAutomaton.accepts_sentence?(:q0, [:b], simple_grammar, [:q2])
+    assert FiniteAutomaton.accepts_sentence?(:q0, [:a, :a, :b], simple_grammar, [:q2])
+    assert FiniteAutomaton.accepts_sentence?(:q0, [:a, :a, :a, :a, :b], simple_grammar, [:q2])
+    assert not FiniteAutomaton.accepts_sentence?(:q0, [:a], simple_grammar, [:q2])
+    assert not FiniteAutomaton.accepts_sentence?(:q0, [:a, :b, :a], simple_grammar, [:q2])
+    assert not FiniteAutomaton.accepts_sentence?(:q0, [:a, :a, :b, :b], simple_grammar, [:q2])
   end
 end
